@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sentinela Analytics · Dashboard Antifraude</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ===================== HEADER ===================== -->
+<header class="topbar">
+  <div class="topbar__brand">
+    <div class="logo-mark" aria-hidden="true">
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="15" cy="15" r="15" fill="url(#g)"/>
+        <circle cx="15" cy="15" r="15" fill="none" stroke="#22D3B8" stroke-width="0.75" opacity="0.5"/>
+        <path d="M9 20L14 9L16 15.5L21 9" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="30" y2="30" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#164E63"/>
+            <stop offset="1" stop-color="#0B1220"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <div class="topbar__title">
+      <span class="topbar__brandname">Sentinela Analytics</span>
+      <span class="topbar__subtitle">Dashboard Antifraude</span>
+    </div>
+  </div>
+
+  <div class="topbar__status">
+    <span class="pulse-dot" id="syncPulse"></span>
+    <span id="syncLabel">Dados mock · sincronizado agora</span>
+    <span class="mode-badge" id="modeBadge">MOCK</span>
+  </div>
+</header>
+
+<!-- ===================== FILTROS ===================== -->
+<section class="filterbar">
+  <div class="filterbar__group">
+    <label for="filterWorkflow">Workflow</label>
+    <select id="filterWorkflow"></select>
+  </div>
+
+  <div class="filterbar__group">
+    <label for="filterOrg">Organização</label>
+    <select id="filterOrg"></select>
+  </div>
+
+  <div class="filterbar__group filterbar__group--dates">
+    <label>Período</label>
+    <div class="date-inputs">
+      <input type="date" id="filterStart">
+      <span class="date-sep">→</span>
+      <input type="date" id="filterEnd">
+    </div>
+  </div>
+
+  <div class="filterbar__chips" id="quickRangeChips">
+    <button data-range="7">7d</button>
+    <button data-range="30" class="is-active">30d</button>
+    <button data-range="90">90d</button>
+    <button data-range="all">Tudo</button>
+  </div>
+
+  <button class="btn-reset" id="btnReset">Limpar seleção</button>
+</section>
+
+<main class="dashboard">
+
+  <!-- ===================== KPI CARDS ===================== -->
+  <section class="kpi-grid" id="kpiGrid" aria-live="polite"></section>
+
+  <!-- ===================== TIMELINE PRINCIPAL ===================== -->
+  <section class="panel panel--timeline">
+    <div class="panel__head">
+      <h2>Transações aprovadas e negadas (%) ao longo do tempo</h2>
+      <p class="panel__hint">Arraste sobre o gráfico para selecionar um período — os cards, tabelas e demais gráficos se atualizam automaticamente.</p>
+    </div>
+    <div class="chart-wrap chart-wrap--tall">
+      <canvas id="chartTimeline"></canvas>
+      <div class="brush-layer" id="brushLayer"></div>
+    </div>
+  </section>
+
+  <!-- ===================== HORA / DIA DA SEMANA ===================== -->
+  <section class="panel-row">
+    <div class="panel panel--half">
+      <div class="panel__head">
+        <h2>Volume de transações negadas por hora</h2>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="chartHourly"></canvas>
+      </div>
+    </div>
+    <div class="panel panel--half">
+      <div class="panel__head">
+        <h2>Transações negadas por dia da semana</h2>
+      </div>
+      <div class="chart-wrap">
+        <canvas id="chartWeekday"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RANKINGS ===================== -->
+  <section class="panel">
+    <div class="panel__head panel__head--tabs">
+      <h2>Rankings de transações negadas</h2>
+      <div class="tabs" id="rankingTabs">
+        <button class="is-active" data-tab="mcc">Por MCC</button>
+        <button data-tab="cartao">Por Cartão</button>
+        <button data-tab="merchant">Por Merchant</button>
+      </div>
+    </div>
+    <div class="table-wrap" id="rankingTableWrap"></div>
+    <div class="table-pagination" id="rankingPagination"></div>
+  </section>
+
+</main>
+
+<footer class="app-footer">
+  <span>Sentinela Analytics · Dashboard Antifraude — protótipo funcional com dados mock, pronto para integração com API.</span>
+</footer>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.0/chart.umd.min.js"></script>
+<script src="js/config.js"></script>
+<script src="js/mockData.js"></script>
+<script src="js/dataService.js"></script>
+<script src="js/state.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/tables.js"></script>
+<script src="js/filters.js"></script>
+<script src="js/app.js"></script>
+
+
+  <!-- 🤖 Agent de IA (NOVO) -->
+  <script src="js/agent/agentConfig.js"></script>
+  <script src="js/agent/toolExecutors.js"></script>
+  <script src="js/agent/agentCore.js"></script>
+  
+  <!-- 💬 Chatbot (NOVO) -->
+  <script src="js/chatbot/chatbot.js"></script>
+
+
+
+</body>
+</html>
