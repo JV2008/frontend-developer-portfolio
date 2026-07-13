@@ -56,5 +56,5 @@ Para perguntas sobre métricas, valores, rankings ou estatísticas, use get_frau
 const API_CONFIG = {
   endpoint: "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
   model: "gemini-2.5-flash",
-  apiKey: "AIzaSyCmzQrwIvZ0J3ZH8qoqUA1AEZIZr19erpg" // ex: "AIza..."
+  apiKey: "********" // ex: "AIza..."
 };
