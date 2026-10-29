@@ -60,7 +60,7 @@
   }
 
   // Re-renderiza tabela isoladamente quando só a aba/página muda (evita refetch completo)
-  let lastTab = null, lastPage = null;
+  let lastTab = 'mcc', lastPage = 0;
   appState.subscribe((state) => {
     if (state.activeRankingTab === lastTab && state.rankingPage === lastPage) {
       refresh();

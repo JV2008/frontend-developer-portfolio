@@ -58,7 +58,7 @@ const filtersModule = (function () {
       document.getElementById('filterWorkflow').value = 'Todos';
       document.getElementById('filterOrg').value = 'Todas';
       appState.set({ workflow: 'Todos', organization: 'Todas', rankingPage: 0 });
-      applyQuickRange(30);
+      applyQuickRange(7);
     });
 
     document.getElementById('rankingTabs').addEventListener('click', (e) => {
@@ -73,7 +73,7 @@ const filtersModule = (function () {
   async function init() {
     await populateSelects();
     bindEvents();
-    applyQuickRange(30); // período padrão ao carregar
+    applyQuickRange(7); // período padrão ao carregar
   }
 
   return { init };
